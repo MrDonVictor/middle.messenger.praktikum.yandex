@@ -8,9 +8,9 @@ Figma
 
 ## Доступные команды
 npm install — установка стабильной версии,
-npm run dev — запуск версии для разработчика,
-npm run build — сборка стабильной версии,
-npm start — запуск версии для разработчика.
+<br/>npm run dev — запуск версии для разработчика,
+<br/>npm run build — сборка стабильной версии,
+<br/>npm start — запуск версии для разработчика.
 
 ## Задеплоенный проект находится ниже
 <a target="_blank" href="https://stellar-medovik-bdc322.netlify.app/">Netlify</a>
