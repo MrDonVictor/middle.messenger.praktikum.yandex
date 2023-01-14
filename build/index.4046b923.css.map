@@ -1,1 +1,0 @@
-{"mappings":"AAEA","sources":["src/scss/style.scss","src/scss/variables.scss"],"sourcesContent":["@import 'variables';\n\n.body-1 {\n  background-color: $bg-color;\n}\n",null],"names":[],"version":3,"file":"index.4046b923.css.map","sourceRoot":"/__parcel_source_root/"}
