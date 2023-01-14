@@ -1,0 +1,76 @@
+.chats {
+  width: 25%;
+  background-color: #FBFBFB;
+  padding: 20px 10px;
+}
+
+.chat {
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.chat-divider {
+  border-top: 1px solid $border-color;
+  margin: 12px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $primary;
+  color: white;
+}
+
+.right-divider {
+  border-right: 1px solid $border-color;
+}
+
+.chat-side {
+  width: 100%;
+  height: 500px;
+}
+
+.mock-nav {
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.chat-header {
+  padding: 10px;
+}
+
+.direct {
+  width: 100%;
+  height: 100%;
+  justify-content: end;
+  background-image: url('https://w0.peakpx.com/wallpaper/425/514/HD-wallpaper-telegram-pattern-art-patterns.jpg');
+}
+
+.message {
+  background-color: white;
+  width: fit-content;
+  padding: 10px;
+  margin: 16px;
+
+  &-own {
+    text-align: right;
+    border-radius: $border-radius $border-radius 0 $border-radius;
+  }
+  &-opponent {
+    text-align: left;
+    border-radius: $border-radius $border-radius $border-radius 0; 
+  }
+}
+
+.arrow-right {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: $primary;
+  color: white;
+}
+
+.clip {
+  margin-left: 10px;
+}
