@@ -1,0 +1,63 @@
+<div class="landing flex flex-row">
+  <div class="flex flex-col right-divider chats">
+    <div class="flex flex-col">
+      <a href="/settings">Settings</a>
+      <input class="input" placeholder='Search'/>
+    </div>
+    {{#each chats}}
+    <div class="chat-divider"></div>
+    <div class="flex flex-row chat space-between">
+      <div class="flex flex-row">
+        <div class="avatar">
+          {{#if avatar }}
+          <img class="avatar" src={{avatar}} />
+          {{/if}}
+        </div>
+        <div class="flex flex-col">
+          <span>{{name}}</span>
+          <span>{{lastMessage.content}}</span>
+        </div>
+      </div>
+      <div class="flex flex-col centered">
+        <span>{{lastMessage.time}}</span>
+        <div class="circle flex centered"><span>{{lastMessage.amount}}</span></div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="chat-side flex flex-col">
+    <div class="flex flex-row space-between">
+      <div class="flex flex-row">
+        <div class="avatar">
+          {{#if chats.0.avatar }}
+          <img class="avatar" src={{chats.0.avatar}} />
+          {{/if}}
+        </div>
+        <span>{{chats.0.name}}</span>
+      </div>
+      <nav class="menu">
+        <span>... </span>
+        <ul class="menu-content">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Mute</a></li>
+          <li><a href="#">Clear history</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="direct flex flex-col">
+      <div class="message message-opponent">
+        <span>Hi, Victor</span>
+      </div>
+      <div class="message message-own">
+        <span>Hello, how are you?</span>
+      </div>
+    </div>
+    <div class="flex flex-row space-between">
+      <i class="fa-solid fa-paperclip clip"></i>
+      <input class="input input-long" placeholder="Message" name="message" />
+      <div class="flex arrow-right centered">
+        <i class="fa-solid fa-arrow-right"></i>
+      </div>
+    </div>
+  </div>
+</div>
