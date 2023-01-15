@@ -17,4 +17,4 @@ npm install — установка стабильной версии,
 <br/>npm start — запуск версии для разработчика.
 
 ## Задеплоенный проект находится ниже
-<a target="_blank" href="https://stellar-medovik-bdc322.netlify.app/">Netlify</a>
+<a target="_blank" href="https://deploy--stellar-medovik-bdc322.netlify.app">Netlify</a>
