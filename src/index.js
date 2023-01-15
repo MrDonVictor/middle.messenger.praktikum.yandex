@@ -1,88 +1,36 @@
 import tmpl from './index.hbs'
 import {landing, signup, signin, settings, error } from './pages'
+import { chats, person } from './utils/mockData';
 
-const chats = [
-  {
-    name: 'Victor',
-    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
-    lastMessage: {
-      time: '14:00',
-      content: 'Sorry, i would not come',
-      amount: 1
-    }
-  },
-  {
-    name: 'Victor',
-    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
-    lastMessage: {
-      time: '14:00',
-      content: 'Sorry, i would not come',
-      amount: 1
-    }
-  },
-  {
-    name: 'Victor',
-    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
-    lastMessage: {
-      time: '14:00',
-      content: 'Sorry, i would not come',
-      amount: 1
-    }
-  },
-  {
-    name: 'Victor',
-    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
-    lastMessage: {
-      time: '14:00',
-      content: 'Sorry, i would not come',
-      amount: 1
-    }
-  }
-]
+let routes = {};
+let templates = {};
 
-const person = {
-  first_name: 'Victor',
-  second_name: 'Zabrovskiy',
-  display_name: 'VictorZ',
-  login: 'victor11555',
-  email: 'vzabrovskiu@gmail.com',
-  phone: '79121334111',
-  avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
-}
+let app_div = document.getElementById('root');
 
-// $('#back-button').click(function(){
-//   window.location.href.replace(/\/[a-zA-Z]+$/, '')
-// });
-
-function backFunc() {
-  window.location.href.replace(/\/[a-zA-Z]+$/, '')
-}
-
-function renderPage() {
+function renderPage(page) {
   let res = ''
-  switch (window.location.href.split('3000')[1]) {
-    case "/":
+  switch (page) {
+    case "landing":
       res = tmpl({
         page: landing({chats:chats}),
       })
       break;
-    case "/signup":
+    case "signup":
       res = tmpl({
         page: signup(),
       })
       break;
-    case "/signin":
+    case "signin":
       res = tmpl({
         page: signin(),
       })
       break;
-    case "/settings":
+    case "settings":
       res = tmpl({
-        backFunc: backFunc.toString().replace(/\"/g,"'") + ")()",
         page: settings({...person}),
       })
       break;
-    case "/500":
+    case "500":
       res = tmpl({
         page: error({error_code: '500', error_text: 'We already fixing it'}),
       })
@@ -93,11 +41,52 @@ function renderPage() {
       })
       break;
   }
-  return res
+  app_div.innerHTML = res
+  return
 }
 
-document.getElementById('root').innerHTML = renderPage();
+function route (path, template) {
+  if (typeof template === 'function') {
+      return routes[path] = template;
+  }
+  else if (typeof template === 'string') {
+      return routes[path] = templates[template];
+  } else {
+      return;
+  };
+};
 
-// document.getElementById('back-button').click(function(){
-//   window.location.href.replace(/\/[a-zA-Z]+$/, '')
-// });
+function template (name, templateFunction) {
+  return templates[name] = templateFunction;
+};
+
+template('landing', () => renderPage('landing'))
+template('signup', () => renderPage('signup'))
+template('signin', () => renderPage('signin'))
+template('settings', () => renderPage('settings'))
+template('500', () => renderPage('500'))
+template('404', () => renderPage('404'))
+
+route('/', 'landing');
+route('signup', 'signup');
+route('signin', 'signin');
+route('settings', 'settings');
+route('500', '500');
+route('404', '404');
+
+function resolveRoute(route) {
+  try {
+      return routes[route];
+  } catch (e) {
+      throw new Error(`Route ${route} not found`);
+  };
+};
+
+function router(evt) {
+  let url = window.location.hash.slice(1) || '/';
+  let route = resolveRoute(url);
+  route();
+};
+
+window.addEventListener('load', router);
+window.addEventListener('hashchange', router);

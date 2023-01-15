@@ -32,8 +32,12 @@
 }
 
 .mock-nav {
+  width: 100px;
+  height: 200px;
   padding: 10px;
   justify-content: space-around;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
 }
 
 .chat-header {
