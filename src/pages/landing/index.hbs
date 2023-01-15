@@ -10,7 +10,7 @@
         <div class="flex flex-row">
           <div class="avatar">
             {{#if avatar }}
-            <img class="avatar" src={{avatar}} />
+            <img class="avatar" src={{avatar}} alt="avatar"/>
             {{/if}}
           </div>
           <div class="flex flex-col">
@@ -30,7 +30,7 @@
       <div class="flex flex-row">
         <div class="avatar">
           {{#if chats.0.avatar }}
-          <img class="avatar" src={{chats.0.avatar}} />
+          <img class="avatar" src={{chats.0.avatar}} alt="avatar" />
           {{/if}}
         </div>
         <span>{{chats.0.name}}</span>
@@ -57,12 +57,14 @@
         {{/if}}
       {{/each}}
     </div>
-    <div class="flex flex-row space-between">
+    <div class="flex flex-row">
       <i class="fa-solid fa-paperclip clip"></i>
-      <input class="input input-long" placeholder="Message" name="message" />
-      <div class="flex arrow-right centered">
-        <i class="fa-solid fa-arrow-right"></i>
-      </div>
+      <form class="flex flex-row form-message">
+        <input class="input input-long" placeholder="Message" name="message" />
+        <button class="flex arrow-right centered" type="submit">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
     </div>
   </div>
 </div>
