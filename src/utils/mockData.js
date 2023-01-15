@@ -34,6 +34,60 @@ export const chats = [
       content: 'Sorry, i would not come',
       amount: 1
     }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
+  },
+  {
+    name: 'Victor',
+    avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
+    lastMessage: {
+      time: '14:00',
+      content: 'Sorry, i would not come',
+      amount: 1
+    }
   }
 ]
 
