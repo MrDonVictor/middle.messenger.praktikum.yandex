@@ -2,7 +2,9 @@
   width: 25%;
   background-color: #FBFBFB;
   padding: 20px 10px;
-  height: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .chat {
@@ -29,7 +31,8 @@
 
 .chat-side {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .mock-nav {
@@ -50,6 +53,7 @@
   height: 100%;
   justify-content: end;
   background-image: url('https://w0.peakpx.com/wallpaper/425/514/HD-wallpaper-telegram-pattern-art-patterns.jpg');
+  overflow-y: scroll;
 }
 
 .message {
