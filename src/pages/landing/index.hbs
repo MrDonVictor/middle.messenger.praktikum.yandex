@@ -1,28 +1,28 @@
 <div class="landing flex flex-row">
   <div class="flex flex-col right-divider chats">
     <div class="flex flex-col">
-      <a href="/settings">Settings</a>
+      <a href="#settings">Profile</a>
       <input class="input" placeholder='Search'/>
     </div>
     {{#each chats}}
-    <div class="chat-divider"></div>
-    <div class="flex flex-row chat space-between">
-      <div class="flex flex-row">
-        <div class="avatar">
-          {{#if avatar }}
-          <img class="avatar" src={{avatar}} />
-          {{/if}}
+      <div class="chat-divider"></div>
+      <div class="flex flex-row chat space-between">
+        <div class="flex flex-row">
+          <div class="avatar">
+            {{#if avatar }}
+            <img class="avatar" src={{avatar}} />
+            {{/if}}
+          </div>
+          <div class="flex flex-col">
+            <span>{{name}}</span>
+            <span>{{lastMessage.content}}</span>
+          </div>
         </div>
-        <div class="flex flex-col">
-          <span>{{name}}</span>
-          <span>{{lastMessage.content}}</span>
+        <div class="flex flex-col centered">
+          <span>{{lastMessage.time}}</span>
+          <div class="circle flex centered"><span>{{lastMessage.amount}}</span></div>
         </div>
       </div>
-      <div class="flex flex-col centered">
-        <span>{{lastMessage.time}}</span>
-        <div class="circle flex centered"><span>{{lastMessage.amount}}</span></div>
-      </div>
-    </div>
     {{/each}}
   </div>
   <div class="chat-side flex flex-col">
@@ -45,99 +45,17 @@
       </nav>
     </div>
     <div class="direct flex flex-col">
-      <div class="message message-opponent">
-        <span>Hi, Victor</span>
-      </div>
-      <div class="message message-own">
-        <span>Hi, Max</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-own">
-        <span>How are you?</span>
-      </div>
-      <div class="message message-opponent">
-        <span>How are you?</span>
-      </div>
+      {{#each messages}}
+        {{#if isOpponent }}
+          <div class="message message-opponent">
+            <span>{{messageText}}</span>
+          </div>
+        {{else}}
+          <div class="message message-own">
+            <span>{{messageText}}</span>
+          </div>
+        {{/if}}
+      {{/each}}
     </div>
     <div class="flex flex-row space-between">
       <i class="fa-solid fa-paperclip clip"></i>

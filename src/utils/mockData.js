@@ -127,3 +127,26 @@ export const person = {
   phone: '79121334111',
   avatar: 'https://aui.atlassian.com/aui/7.9/docs/images/avatar-96.png',
 }
+
+export const messages = [
+  {
+    messageText: 'Hi Victor',
+    isOpponent: true,
+  },
+  {
+    messageText: 'Hi Max',
+    isOpponent: false,
+  },
+  {
+    messageText: 'How are you?',
+    isOpponent: false,
+  },
+  {
+    messageText: 'All good, how are you?',
+    isOpponent: true,
+  },
+  {
+    messageText: 'Fine',
+    isOpponent: false,
+  },
+]

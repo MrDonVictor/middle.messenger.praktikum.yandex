@@ -1,6 +1,6 @@
 import tmpl from './index.hbs'
 import {landing, signup, signin, settings, error } from './pages'
-import { chats, person } from './utils/mockData';
+import { chats, person, messages } from './utils/mockData';
 
 let routes = {};
 let templates = {};
@@ -12,7 +12,10 @@ function renderPage(page) {
   switch (page) {
     case "landing":
       res = tmpl({
-        page: landing({chats:chats}),
+        page: landing({
+          chats:chats,
+          messages: messages
+        }),
       })
       break;
     case "signup":
