@@ -66,11 +66,12 @@
   padding: 10px;
 
   &-own {
-    text-align: right;
+    background-color: $primary;
+    color: white;
+    margin-left: auto;
     border-radius: $border-radius $border-radius 0 $border-radius;
   }
   &-opponent {
-    text-align: left;
     border-radius: $border-radius $border-radius $border-radius 0; 
   }
 }

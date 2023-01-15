@@ -2,10 +2,6 @@
 @import 'input';
 @import 'landing';
 
-main {
-  
-}
-
 .row {
   display: flex;
   flex-direction: row;
@@ -66,4 +62,17 @@ main {
 
 .space-between {
   justify-content: space-between;
+}
+
+.form {
+  width: fit-content;
+  top: 50%;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  &-link {
+    margin-top: 16px;
+  }
 }
