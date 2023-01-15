@@ -1,4 +1,4 @@
-[![Build status](https://img.shields.io/github/actions/workflow/status/MrDonVictor/middle.messenger.praktikum.yandex/.github/workflows/tests.yml)]
+![Build status](https://img.shields.io/github/actions/workflow/status/MrDonVictor/middle.messenger.praktikum.yandex/.github/workflows/tests.yml)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7123fc25-7bbb-42a5-adf8-362dd0e61bae/deploy-status)](https://app.netlify.com/sites/stellar-medovik-bdc322/deploys)
 
