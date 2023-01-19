@@ -1,0 +1,83 @@
+@import "../../node_modules/normalize-scss/sass/normalize";
+@import 'variables';
+@import 'input';
+@import 'landing';
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  text-decoration: underline;
+  color: $primary;
+}
+
+.flex {
+  display: flex;
+  &-col {
+    flex-direction: column;
+  }
+  &-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background-color: $bg-color;
+  margin-right: 10px;
+
+  &-profile {
+    width: 130px;
+    height: 130px;
+    margin-top: 50px;
+  }
+}
+
+.button {
+  color: white;
+  width: 280px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: $border-radius;
+  border: none;
+  padding: 12;
+  
+  &-primary {
+    background-color: $primary;
+  }
+
+  &-secondary {
+    background-color: $secondary;
+  }
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.form {
+  width: fit-content;
+  top: 50%;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  &-link {
+    margin-top: 16px;
+  }
+
+  &-message {
+    width: 100%;
+  }
+}
