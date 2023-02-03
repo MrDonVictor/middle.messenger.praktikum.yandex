@@ -2,15 +2,15 @@
   <div class="flex flex-col right-divider chats">
     <div class="flex flex-col">
       <a href="#settings">Profile</a>
-      <input class="input" placeholder='Search'/>
+      <input class="input" placeholder="Search" />
     </div>
     {{#each chats}}
       <div class="chat-divider"></div>
       <div class="flex flex-row chat space-between">
         <div class="flex flex-row">
           <div class="avatar">
-            {{#if avatar }}
-            <img class="avatar" src={{avatar}} alt="avatar"/>
+            {{#if avatar}}
+              <img class="avatar" src={{avatar}} alt="avatar" />
             {{/if}}
           </div>
           <div class="flex flex-col">
@@ -20,7 +20,8 @@
         </div>
         <div class="flex flex-col centered">
           <span>{{lastMessage.time}}</span>
-          <div class="circle flex centered"><span>{{lastMessage.amount}}</span></div>
+          <div class="circle flex centered"><span
+            >{{lastMessage.amount}}</span></div>
         </div>
       </div>
     {{/each}}
@@ -29,8 +30,8 @@
     <div class="flex flex-row space-between chat-header">
       <div class="flex flex-row">
         <div class="avatar">
-          {{#if chats.0.avatar }}
-          <img class="avatar" src={{chats.0.avatar}} alt="avatar" />
+          {{#if chats.0.avatar}}
+            <img class="avatar" src={{chats.0.avatar}} alt="avatar" />
           {{/if}}
         </div>
         <span>{{chats.0.name}}</span>
@@ -46,7 +47,7 @@
     </div>
     <div class="direct flex flex-col">
       {{#each messages}}
-        {{#if isOpponent }}
+        {{#if isOpponent}}
           <div class="message message-opponent">
             <span>{{messageText}}</span>
           </div>
@@ -60,10 +61,11 @@
     <div class="flex flex-row">
       <i class="fa-solid fa-paperclip clip"></i>
       <form class="flex flex-row form-message">
-        <input class="input input-long" placeholder="Message" name="message" />
+        <input class="input input-long" placeholder="Message" name="message" required />
         <button class="flex arrow-right centered" type="submit">
           <i class="fa-solid fa-arrow-right"></i>
         </button>
+        {{! console.log(data)  }}
       </form>
     </div>
   </div>
