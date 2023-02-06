@@ -1,4 +1,4 @@
 declare module "*.hbs" {
-  const _: Function;
+  const _: (page: unknown) => string;
   export default _;
 }

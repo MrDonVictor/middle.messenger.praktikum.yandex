@@ -2,8 +2,12 @@ import tmpl from "./index.hbs";
 import { landing, signup, signin, settings, error } from "./pages";
 import { chats, person, messages } from "./utils/mockData";
 
-const routes: { string: string } | {} = {};
-const templates: { string: string } | {} = {};
+interface Infer {
+  string: string | (() => void);
+}
+
+const routes: Infer = {} as Infer;
+const templates: Infer = {} as Infer;
 
 const app_div = document.getElementById("root");
 
@@ -51,18 +55,16 @@ function renderPage(page: string) {
   return;
 }
 
-function route(path: string, template: Function | string) {
-  if (typeof template === "function") {
-    return (routes[path] = template);
-  } else if (typeof template === "string") {
-    return (routes[path] = templates[template]);
+function route(path: string, template: string | (() => void)) {
+  if (typeof template === "string") {
+    return (routes[path as keyof Infer] = templates[template as keyof Infer]);
   } else {
     return;
   }
 }
 
 function template(name: string, templateFunction: () => void) {
-  return (templates[name] = templateFunction);
+  return (templates[name as keyof Infer] = templateFunction);
 }
 
 template("landing", () => renderPage("landing"));
@@ -81,7 +83,7 @@ route("404", "404");
 
 function resolveRoute(route: string) {
   try {
-    return routes[route];
+    return routes[route as keyof Infer];
   } catch (e) {
     throw new Error(`Route ${route} not found`);
   }
@@ -90,7 +92,9 @@ function resolveRoute(route: string) {
 function router() {
   const url = window.location.hash.slice(1) || "/";
   const route = resolveRoute(url);
-  route();
+  if (typeof route == "function") {
+    route();
+  }
 }
 
 window.addEventListener("load", router);
