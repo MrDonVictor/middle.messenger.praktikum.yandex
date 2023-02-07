@@ -57,21 +57,26 @@ export default class Block {
   }
 
   _render() {
-    const block = this.render();    
+    const block = this.render();
     this.removeEvents();
     this._element.innerHTML = "";
-    this._element.appendChild(block);    
+    this._element.appendChild(block);
     this.addEvents();
     this.addAttribute();
   }
 
-  render() { return '' as unknown as Node}
+  render() {
+    return "" as unknown as Node;
+  }
 
   addEvents() {
     const { events } = this._props;
     if (events) {
       Object.keys(events).forEach((eventName) =>
-        this._element.addEventListener(eventName, events[eventName as keyof typeof events])
+        this._element.addEventListener(
+          eventName,
+          events[eventName as keyof typeof events]
+        )
       );
     }
   }
@@ -80,7 +85,10 @@ export default class Block {
     const { events } = this._props;
     if (events) {
       Object.keys(events).forEach((eventName) =>
-        this._element.removeEventListener(eventName, events[eventName as keyof typeof events])
+        this._element.removeEventListener(
+          eventName,
+          events[eventName as keyof typeof events]
+        )
       );
     }
   }
@@ -107,7 +115,10 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template: { (page: Block): string; (arg0: unknown): string; }, props: { [key: string]: unknown; }) {
+  compile(
+    template: { (page: Block): string; (arg0: unknown): string },
+    props: { [key: string]: unknown }
+  ) {
     if (typeof props == "undefined") {
       props = this._props;
     }

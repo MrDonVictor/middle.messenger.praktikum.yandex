@@ -1,4 +1,4 @@
-import {Nav, Block} from "./components";
+import { Nav, Block } from "./components";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
 import { chats, person, messages, navigation } from "./utils/mockData";
@@ -98,7 +98,9 @@ function renderPage(page: string) {
       break;
   }
   index._render();
-  app_div.innerHTML = index._element.innerHTML;
+  if (app_div) {
+    app_div.innerHTML = index._element.innerHTML;
+  }
   return;
 }
 

@@ -1,6 +1,4 @@
-type Arg = {
-  string: (() => void)[];
-};
+import { Arg } from "./types";
 
 export default class EventBus {
   listeners;

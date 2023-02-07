@@ -12,3 +12,7 @@ export type Message = {
   messageText: string;
   isOpponent: boolean;
 };
+
+export type Arg = {
+  string: (() => void)[];
+};
