@@ -1,4 +1,4 @@
-import EventBus from "../utils/event-bus";
+import EventBus from "../utils/EventBus";
 import { v4 as makeUUID } from "uuid";
 
 export default class Block {
@@ -107,7 +107,7 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template: { (page: unknown): string; (arg0: unknown): string; }, props: { [x: string]: unknown; }) {
+  compile(template: { (page: Block): string; (arg0: unknown): string; }, props: { [key: string]: unknown; }) {
     if (typeof props == "undefined") {
       props = this._props;
     }

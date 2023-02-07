@@ -4,12 +4,12 @@
     "target": "es2017",
     "declaration": false,
     "module": "commonjs",
+    "esModuleInterop": true,
+    "lib": ["es6", "DOM"],
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "lib": ["es6"]
+    "strictNullChecks": true
   }
 }

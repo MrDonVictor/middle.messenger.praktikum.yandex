@@ -1,5 +1,4 @@
-import Block from "./components/block";
-import Nav from "./components/Nav";
+import {Nav, Block} from "./components";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
 import { chats, person, messages, navigation } from "./utils/mockData";
