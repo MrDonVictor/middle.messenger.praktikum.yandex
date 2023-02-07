@@ -7,8 +7,8 @@ export default class Nav extends Block {
   }
 
   addEvents() {
-    this._element.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", this._props.events.click);
+    this._element.querySelectorAll("a").forEach((a) => {      
+      a.addEventListener("click", this._props.events.click);      
     });
     super.addEvents();
   }

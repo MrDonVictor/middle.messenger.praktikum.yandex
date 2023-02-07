@@ -57,10 +57,10 @@ export default class Block {
   }
 
   _render() {
-    const block = this.render();
+    const block = this.render();    
     this.removeEvents();
     this._element.innerHTML = "";
-    this._element.appendChild(block);
+    this._element.appendChild(block);    
     this.addEvents();
     this.addAttribute();
   }

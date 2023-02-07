@@ -17,9 +17,9 @@ const nav = new Nav("ul", {
   items: navigation,
   events: {
     click: (e: Event) => {
+      console.log("Link clicked");
       e.preventDefault();
       e.stopPropagation();
-      console.log("Link clicked");
     },
   },
 });
