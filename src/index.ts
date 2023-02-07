@@ -1,10 +1,83 @@
+import Block from "./components/block";
+import Nav from "./components/Nav";
 import tmpl from "./index.hbs";
-import { landing, signup, signin, settings, error } from "./pages";
+import { Landing, Signup, Signin, Settings, Error } from "./pages";
 import { chats, person, messages } from "./utils/mockData";
 
 interface Infer {
   string: string | (() => void);
 }
+
+class Index extends Block {
+  render() {
+    return this.compile(tmpl, { ...this._props });
+  }
+}
+
+const nav = new Nav("ul", {
+  items: [
+    { url: "#", title: "Landing" },
+    { url: "#signup", title: "Signup Page" },
+    { url: "#signin", title: "Signin Page" },
+    { url: "#settings", title: "Settings" },
+    { url: "#404", title: "404" },
+    { url: "#500", title: "500" },
+  ],
+  events: {
+    click: (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Link clicked");
+    },
+  },
+});
+
+const landing = new Landing("div", {
+  chats: chats,
+  messages: messages,
+  attr: {
+    class: "landing flex flex-row",
+  },
+});
+
+const signup = new Signup("div", {
+  attr: {
+    class: "flex flex-col centered form",
+  },
+});
+
+const signin = new Signin("div", {
+  attr: {
+    class: "flex flex-col centered form",
+  },
+});
+
+const settings = new Settings("div", {
+  ...person,
+  attr: {
+    class: "flex flex-col centered",
+  },
+});
+
+const error500 = new Error("div", {
+  error_code: "500",
+  error_text: "We already fixing it",
+  attr: {
+    class: "flex flex-col centered",
+  },
+});
+
+const error404 = new Error("div", {
+  error_code: "404",
+  error_text: "Ops there is no page you are looking for",
+  attr: {
+    class: "flex flex-col centered",
+  },
+});
+
+const index = new Index("div", {
+  nav: nav,
+});
 
 const routes: Infer = {} as Infer;
 const templates: Infer = {} as Infer;
@@ -12,46 +85,28 @@ const templates: Infer = {} as Infer;
 const app_div = document.getElementById("root");
 
 function renderPage(page: string) {
-  let res = "";
   switch (page) {
     case "landing":
-      res = tmpl({
-        page: landing({
-          chats: chats,
-          messages: messages,
-        }),
-      });
+      index.setProps({ page: landing });
       break;
     case "signup":
-      res = tmpl({
-        page: signup(),
-      });
+      index.setProps({ page: signup });
       break;
     case "signin":
-      res = tmpl({
-        page: signin(),
-      });
+      index.setProps({ page: signin });
       break;
     case "settings":
-      res = tmpl({
-        page: settings({ ...person }),
-      });
+      index.setProps({ page: settings });
       break;
     case "500":
-      res = tmpl({
-        page: error({ error_code: "500", error_text: "We already fixing it" }),
-      });
+      index.setProps({ page: error500 });
       break;
     default:
-      res = tmpl({
-        page: error({
-          error_code: "404",
-          error_text: "Ops there is no page you are looking for",
-        }),
-      });
+      index.setProps({ page: error404 });
       break;
   }
-  app_div.innerHTML = res;
+  index._render();
+  app_div.innerHTML = index._element.innerHTML;
   return;
 }
 

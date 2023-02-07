@@ -1,4 +1,8 @@
-import { Chat, Message } from "../../utils/types";
 import tmpl from "./index.hbs";
+import Block from "../../components/block";
 
-export default (props: { chats: Chat[]; messages: Message[] }) => tmpl(props);
+export default class Landing extends Block {
+  render() {
+    return this.compile(tmpl, { ...this._props });
+  }
+}

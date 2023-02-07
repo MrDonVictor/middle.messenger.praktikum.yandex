@@ -1,27 +1,25 @@
-<div class="flex flex-col centered form">
-  <span>Sign in</span>
-  <form>
-    <div class="input-container">
-      <input
-        type="text"
-        id="login"
-        name="login"
-        required
-        pattern="^(?=[a-zA-Z0-9_-]{3,20}$)(?!.*[_-]{2})[^_-].*[^_-]$"
-      />
-      <label for="login">Login</label>
-    </div>
-    <div class="input-container">
-      <input
-        type="password"
-        id="password"
-        name="password"
-        required
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$"
-      />
-      <label for="password">Password</label>
-    </div>
-    <button class="button button-primary" type="submit">Sign in</button>
-  </form>
-  <a href="#signup" class="form-link">Need Sign up?</a>
-</div>
+<span>Sign in</span>
+<form>
+  <div class="input-container">
+    <input
+      type="text"
+      id="login"
+      name="login"
+      required
+      pattern="^(?=[a-zA-Z0-9_-]{3,20}$)(?!.*[_-]{2})[^_-].*[^_-]$"
+    />
+    <label for="login">Login</label>
+  </div>
+  <div class="input-container">
+    <input
+      type="password"
+      id="password"
+      name="password"
+      required
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$"
+    />
+    <label for="password">Password</label>
+  </div>
+  <button class="button button-primary" type="submit">Sign in</button>
+</form>
+<a href="#signup" class="form-link">Need Sign up?</a>

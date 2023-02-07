@@ -1,5 +1,5 @@
-export { default as signup } from "./signup";
-export { default as landing } from "./landing";
-export { default as error } from "./error";
-export { default as settings } from "./settings";
-export { default as signin } from "./signin";
+export { default as Signup } from "./signup";
+export { default as Landing } from "./landing";
+export { default as Error } from "./error";
+export { default as Settings } from "./settings";
+export { default as Signin } from "./signin";

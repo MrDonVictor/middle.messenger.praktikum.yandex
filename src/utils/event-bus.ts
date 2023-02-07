@@ -1,6 +1,6 @@
 type Arg = {
-  string: (()=>void)[],
-}
+  string: (() => void)[];
+};
 
 export default class EventBus {
   listeners;
@@ -8,7 +8,7 @@ export default class EventBus {
     this.listeners = {} as Arg;
   }
 
-  on(event: string, callback: ()=>void) {
+  on(event: string, callback: () => void) {
     if (!this.listeners[event as keyof Arg]) {
       this.listeners[event as keyof Arg] = [];
     }
@@ -16,14 +16,14 @@ export default class EventBus {
     this.listeners[event as keyof Arg].push(callback);
   }
 
-  off(event: string, callback: ()=>void) {
+  off(event: string, callback: () => void) {
     if (!this.listeners[event as keyof Arg]) {
       throw new Error(`Нет события: ${event}`);
     }
 
-    this.listeners[event as keyof Arg] = this.listeners[event as keyof Arg].filter(
-      (listener) => listener !== callback
-    );
+    this.listeners[event as keyof Arg] = this.listeners[
+      event as keyof Arg
+    ].filter((listener) => listener !== callback);
   }
 
   emit(event: string, ...args: unknown[]) {
