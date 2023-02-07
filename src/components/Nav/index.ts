@@ -3,7 +3,7 @@ import tmpl from "./index.hbs";
 
 export default class Nav extends Block {
   render() {
-    return this.compile(tmpl, { ...this._props }); //(props = {}) => tmpl(props);
+    return this.compile(tmpl, { ...this._props });
   }
 
   addEvents() {

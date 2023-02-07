@@ -8,6 +8,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "strictNullChecks": false // to be replaced 
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "lib": ["es6"]
   }
 }

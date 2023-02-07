@@ -150,3 +150,12 @@ export const messages = [
     isOpponent: false,
   },
 ];
+
+export const navigation = [
+  { url: "#", title: "Landing" },
+  { url: "#signup", title: "Signup Page" },
+  { url: "#signin", title: "Signin Page" },
+  { url: "#settings", title: "Settings" },
+  { url: "#404", title: "404" },
+  { url: "#500", title: "500" },
+];

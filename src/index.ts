@@ -2,7 +2,7 @@ import Block from "./components/block";
 import Nav from "./components/Nav";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
-import { chats, person, messages } from "./utils/mockData";
+import { chats, person, messages, navigation } from "./utils/mockData";
 
 interface Infer {
   string: string | (() => void);
@@ -15,16 +15,9 @@ class Index extends Block {
 }
 
 const nav = new Nav("ul", {
-  items: [
-    { url: "#", title: "Landing" },
-    { url: "#signup", title: "Signup Page" },
-    { url: "#signin", title: "Signin Page" },
-    { url: "#settings", title: "Settings" },
-    { url: "#404", title: "404" },
-    { url: "#500", title: "500" },
-  ],
+  items: navigation,
   events: {
-    click: (e) => {
+    click: (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
       console.log("Link clicked");

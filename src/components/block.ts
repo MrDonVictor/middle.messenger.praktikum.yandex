@@ -1,5 +1,4 @@
 import EventBus from "../utils/event-bus";
-import Handlebars from "handlebars";
 import { v4 as makeUUID } from "uuid";
 
 export default class Block {
@@ -12,7 +11,7 @@ export default class Block {
 
   _element: HTMLElement;
   _meta: { tagName: string; props?: { [key: string]: unknown } };
-  _props: { [key: string]: unknown };
+  _props;
   _eventBus;
   _id;
   _children: Block | { [key: string]: unknown };
@@ -66,13 +65,13 @@ export default class Block {
     this.addAttribute();
   }
 
-  render() {}
+  render() { return '' as unknown as Node}
 
   addEvents() {
     const { events } = this._props;
     if (events) {
       Object.keys(events).forEach((eventName) =>
-        this._element.addEventListener(eventName, events[eventName])
+        this._element.addEventListener(eventName, events[eventName as keyof typeof events])
       );
     }
   }
@@ -81,7 +80,7 @@ export default class Block {
     const { events } = this._props;
     if (events) {
       Object.keys(events).forEach((eventName) =>
-        this._element.removeEventListener(eventName, events[eventName])
+        this._element.removeEventListener(eventName, events[eventName as keyof typeof events])
       );
     }
   }
@@ -108,7 +107,7 @@ export default class Block {
     return { children, props };
   }
 
-  compile(template, props) {
+  compile(template: { (page: unknown): string; (arg0: unknown): string; }, props: { [x: string]: unknown; }) {
     if (typeof props == "undefined") {
       props = this._props;
     }
@@ -140,7 +139,7 @@ export default class Block {
   }
 
   componentDidMount() {
-    return true; // to be replaced
+    return true;
   }
 
   dispatchComponentDidMount() {
@@ -164,7 +163,7 @@ export default class Block {
     oldProps: { [key: string]: unknown },
     newProps: { [key: string]: unknown }
   ) {
-    console.log(oldProps, newProps); // replace with real logic
+    console.log(oldProps, newProps);
     return true;
   }
 
