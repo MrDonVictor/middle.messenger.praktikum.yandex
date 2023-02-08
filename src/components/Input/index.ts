@@ -1,4 +1,4 @@
-import Block from "../block";
+import Block from "../Block";
 import tmpl from "./index.hbs";
 
 export default class Input extends Block {

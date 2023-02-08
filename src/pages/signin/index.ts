@@ -1,5 +1,5 @@
 import tmpl from "./index.hbs";
-import Block from "../../components/block";
+import {Block} from "../../components";
 
 export default class Signin extends Block {
   render() {

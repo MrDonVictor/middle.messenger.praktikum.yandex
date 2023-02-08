@@ -1,5 +1,5 @@
 import tmpl from "./form.hbs";
-import Block from "../../components/block";
+import {Block} from "../../components";
 
 export default class SettingsForm extends Block {
   render() {
