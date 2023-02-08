@@ -1,7 +1,16 @@
-import { Nav, Block } from "./components";
+import { Nav, Block, Input } from "./components";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
-import { chats, person, messages, navigation } from "./utils/mockData";
+import SettingsForm from "./pages/settings/form";
+import {
+  chats,
+  person,
+  messages,
+  navigation,
+  signupInputs,
+  loginInputs,
+  settingsInputs,
+} from "./utils/mockData";
 
 interface Infer {
   string: string | (() => void);
@@ -32,15 +41,89 @@ const landing = new Landing("div", {
   },
 });
 
+const signupInputsComponents: { string: Block } = {} as { string: Block };
+
+signupInputs.map(
+  (input) =>
+    (signupInputsComponents[input.name as keyof { string: Block }] = new Input(
+      "div",
+      {
+        attr: {
+          class: "input-container",
+        },
+        type: input.type,
+        id: input.id,
+        name: input.name,
+        required: input.required,
+        label: input.label,
+        pattern: input.pattern,
+      }
+    ))
+);
+
+const loginInputsComponents: { string: Block } = {} as { string: Block };
+
+loginInputs.map(
+  (input) =>
+    (loginInputsComponents[input.name as keyof { string: Block }] = new Input(
+      "div",
+      {
+        attr: {
+          class: "input-container",
+        },
+        type: input.type,
+        id: input.id,
+        name: input.name,
+        required: input.required,
+        label: input.label,
+        pattern: input.pattern,
+      }
+    ))
+);
+
+const settingsComponents: { string: Block } = {} as { string: Block };
+
+settingsInputs.map(
+  (input) =>
+    (settingsComponents[(input.name + "_comp") as keyof { string: Block }] =
+      new Input("div", {
+        attr: {
+          class: "input-container",
+        },
+        type: input.type,
+        id: input.id,
+        name: input.name,
+        required: input.required,
+        label: input.label,
+        pattern: input.pattern,
+      }))
+);
+
 const signup = new Signup("div", {
   attr: {
     class: "flex flex-col centered form",
   },
+  ...signupInputsComponents,
 });
 
 const signin = new Signin("div", {
   attr: {
     class: "flex flex-col centered form",
+  },
+  ...loginInputsComponents,
+});
+
+const settingsForm = new SettingsForm("form", {
+  attr: {
+    class: "flex flex-col centered",
+  },
+  ...settingsComponents,
+  events: {
+    onSubmit: (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Form submited");
+    },
   },
 });
 
@@ -49,6 +132,7 @@ const settings = new Settings("div", {
   attr: {
     class: "flex flex-col centered",
   },
+  form: settingsForm,
 });
 
 const error500 = new Error("div", {
@@ -138,7 +222,9 @@ function resolveRoute(route: string) {
   }
 }
 
-function router() {
+function router(e:Event) {
+  e.preventDefault()
+  e.stopPropagation()
   const url = window.location.hash.slice(1) || "/";
   const route = resolveRoute(url);
   if (typeof route == "function") {

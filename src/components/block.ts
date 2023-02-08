@@ -71,7 +71,7 @@ export default class Block {
 
   addEvents() {
     const { events } = this._props;
-    if (events) {
+    if (events) {            
       Object.keys(events).forEach((eventName) =>
         this._element.addEventListener(
           eventName,
