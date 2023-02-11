@@ -1,7 +1,7 @@
 import tmpl from "./index.hbs";
-import {Block} from "../../components";
+import { Block, T } from "../../components";
 
-export default class Signup extends Block {
+export default class Signup extends Block<T> {
   render() {
     return this.compile(tmpl, { ...this._props });
   }

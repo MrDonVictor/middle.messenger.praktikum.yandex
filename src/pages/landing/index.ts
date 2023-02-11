@@ -1,7 +1,16 @@
 import tmpl from "./index.hbs";
-import {Block} from "../../components";
+import { Block, T } from "../../components";
 
-export default class Landing extends Block {
+type Props = T & {
+  chats: {
+    name: string;
+    avatar: string;
+    lastMessage: { time: string; content: string; amount: number };
+  }[];
+  messages: { messageText: string; isOpponent: boolean }[];
+};
+
+export default class Landing extends Block<Props> {
   render() {
     return this.compile(tmpl, { ...this._props });
   }

@@ -6,7 +6,7 @@ export default class EventBus {
     this.listeners = {} as Arg;
   }
 
-  on(event: string, callback: () => void) {
+  public on(event: string, callback: () => void) {
     if (!this.listeners[event as keyof Arg]) {
       this.listeners[event as keyof Arg] = [];
     }
@@ -14,7 +14,7 @@ export default class EventBus {
     this.listeners[event as keyof Arg].push(callback);
   }
 
-  off(event: string, callback: () => void) {
+  public off(event: string, callback: () => void) {
     if (!this.listeners[event as keyof Arg]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -24,7 +24,7 @@ export default class EventBus {
     ].filter((listener) => listener !== callback);
   }
 
-  emit(event: string, ...args: unknown[]) {
+  public emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event as keyof Arg]) {
       throw new Error(`Нет события: ${event}`);
     }

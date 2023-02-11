@@ -1,7 +1,6 @@
-import { Nav, Block, Input } from "./components";
+import { Nav, Block, Input, SettingsForm, T } from "./components";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
-import SettingsForm from "./pages/settings/form";
 import {
   chats,
   person,
@@ -16,7 +15,7 @@ interface Infer {
   string: string | (() => void);
 }
 
-class Index extends Block {
+class Index extends Block<T> {
   render() {
     return this.compile(tmpl, { ...this._props });
   }
@@ -41,13 +40,12 @@ const landing = new Landing("div", {
   },
 });
 
-const signupInputsComponents: { string: Block } = {} as { string: Block };
+const signupInputsComponents: { string: Block<T> } = {} as { string: Block<T> };
 
 signupInputs.map(
   (input) =>
-    (signupInputsComponents[input.name as keyof { string: Block }] = new Input(
-      "div",
-      {
+    (signupInputsComponents[input.name as keyof { string: Block<T> }] =
+      new Input("div", {
         attr: {
           class: "input-container",
         },
@@ -57,17 +55,15 @@ signupInputs.map(
         required: input.required,
         label: input.label,
         pattern: input.pattern,
-      }
-    ))
+      }))
 );
 
-const loginInputsComponents: { string: Block } = {} as { string: Block };
+const loginInputsComponents: { string: Block<T> } = {} as { string: Block<T> };
 
 loginInputs.map(
   (input) =>
-    (loginInputsComponents[input.name as keyof { string: Block }] = new Input(
-      "div",
-      {
+    (loginInputsComponents[input.name as keyof { string: Block<T> }] =
+      new Input("div", {
         attr: {
           class: "input-container",
         },
@@ -77,15 +73,14 @@ loginInputs.map(
         required: input.required,
         label: input.label,
         pattern: input.pattern,
-      }
-    ))
+      }))
 );
 
-const settingsComponents: { string: Block } = {} as { string: Block };
+const settingsComponents: { string: Block<T> } = {} as { string: Block<T> };
 
 settingsInputs.map(
   (input) =>
-    (settingsComponents[(input.name + "_comp") as keyof { string: Block }] =
+    (settingsComponents[(input.name + "_comp") as keyof { string: Block<T> }] =
       new Input("div", {
         attr: {
           class: "input-container",
@@ -222,9 +217,9 @@ function resolveRoute(route: string) {
   }
 }
 
-function router(e:Event) {
-  e.preventDefault()
-  e.stopPropagation()
+function router(e: Event) {
+  e.preventDefault();
+  e.stopPropagation();
   const url = window.location.hash.slice(1) || "/";
   const route = resolveRoute(url);
   if (typeof route == "function") {

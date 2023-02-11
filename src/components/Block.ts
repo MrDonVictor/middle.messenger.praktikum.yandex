@@ -1,7 +1,11 @@
 import EventBus from "../utils/EventBus";
 import { v4 as makeUUID } from "uuid";
 
-export default class Block {
+export type T = Record<string, any>
+
+type Children = Record<string, Block<T>>;
+
+export default abstract class Block<Props extends T> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -10,27 +14,27 @@ export default class Block {
   };
 
   _element: HTMLElement;
-  _meta: { tagName: string; props?: { [key: string]: unknown } };
-  _props;
+  _meta: { tagName: string; props?: Props };
+  _props: Props;
   _eventBus;
   _id;
-  _children: Block | { [key: string]: unknown };
+  _children: Children;
   _setUpdate = false;
 
-  constructor(tagName = "div", propsAndChilds = {}) {
+  constructor(tagName = "div", propsAndChilds = {} as Props) {
     const { children, props } = this.getChildren(propsAndChilds);
 
     this._eventBus = new EventBus();
     this._id = makeUUID();
-    this._children = this._makePropsProxy(children);
-    this._props = this._makePropsProxy({ ...props, _id: this._id });
+    this._children = this._makePropsProxy(children as Props);
+    this._props = this._makePropsProxy({ ...props, _id: this._id }) as Props;
     this._meta = { tagName, props };
 
     this.registerEvents();
     this._eventBus.emit(Block.EVENTS.INIT);
   }
 
-  registerEvents() {
+  private registerEvents() {
     this._eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     this._eventBus.on(
       Block.EVENTS.FLOW_CDM,
@@ -43,20 +47,16 @@ export default class Block {
     this._eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  init() {
+  private init() {
     this._element = this.createDocumentElement(this._meta?.tagName);
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  createDocumentElement(tagName: string) {
-    const element = document.createElement(tagName);
-    if (this._props.settings?.withInternalId) {
-      element.setAttribute("data-id", this._id);
-    }
-    return element;
+  private createDocumentElement(tagName: string) {
+    return document.createElement(tagName);
   }
 
-  _render() {
+  public _render() {
     const block = this.render();
     this.removeEvents();
     this._element.innerHTML = "";
@@ -65,13 +65,13 @@ export default class Block {
     this.addAttribute();
   }
 
-  render() {
+  public render() {
     return "" as unknown as Node;
   }
 
-  addEvents() {
+  public addEvents() {
     const { events } = this._props;
-    if (events) {            
+    if (events) {
       Object.keys(events).forEach((eventName) =>
         this._element.addEventListener(
           eventName,
@@ -81,7 +81,7 @@ export default class Block {
     }
   }
 
-  removeEvents() {
+  public removeEvents() {
     const { events } = this._props;
     if (events) {
       Object.keys(events).forEach((eventName) =>
@@ -93,7 +93,7 @@ export default class Block {
     }
   }
 
-  addAttribute() {
+  public addAttribute() {
     const { attr } = this._props;
     if (attr) {
       Object.entries(attr).forEach(([key, value]) =>
@@ -102,9 +102,12 @@ export default class Block {
     }
   }
 
-  getChildren(propsAndChilds: { [key: string]: unknown }) {
-    const props = {} as { [key: string]: unknown };
-    const children = {} as { [key: string]: unknown };
+  private getChildren(propsAndChilds: Props): {
+    props: Props;
+    children: Children;
+  } {
+    const props = {} as T;
+    const children: Children = {};
     Object.keys(propsAndChilds).forEach((key) => {
       if (propsAndChilds[key] instanceof Block) {
         children[key] = propsAndChilds[key];
@@ -112,12 +115,12 @@ export default class Block {
         props[key] = propsAndChilds[key];
       }
     });
-    return { children, props };
+    return { children, props: props as Props };
   }
 
-  compile(
-    template: { (page: Block): string; (arg0: unknown): string },
-    props: { [key: string]: unknown }
+  public compile(
+    template: { (page: Block<T>): string; (arg0: unknown): string },
+    props: Props
   ) {
     if (typeof props == "undefined") {
       props = this._props;
@@ -129,7 +132,9 @@ export default class Block {
         (propsAndStubs[key] = `<div data-id="${child._id}"></div>`)
     );
 
-    const fragment = this.createDocumentElement("template");
+    const fragment = this.createDocumentElement(
+      "template"
+    ) as HTMLTemplateElement;
     fragment.innerHTML = template(propsAndStubs);
 
     Object.values(this._children).forEach((child) => {
@@ -142,43 +147,37 @@ export default class Block {
     return fragment.content;
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
     Object.values(this._children).forEach((child) =>
       child.dispatchComponentDidMount()
     );
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     return true;
   }
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount() {
     this._eventBus.emit(Block.EVENTS.FLOW_CDM);
     if (Object.keys(this._children).length) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  _componentDidUpdate(
-    oldProps: { [key: string]: unknown },
-    newProps: { [key: string]: unknown }
-  ) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(
-    oldProps: { [key: string]: unknown },
-    newProps: { [key: string]: unknown }
-  ) {
+  public componentDidUpdate(oldProps: Props, newProps: Props) {
     console.log(oldProps, newProps);
     return true;
   }
 
-  setProps = (newProps: { [key: string]: unknown }) => {
+  public setProps = (newProps: Props) => {
     if (!newProps) {
       return;
     }
@@ -200,15 +199,15 @@ export default class Block {
     }
   };
 
-  _makePropsProxy(props: { [key: string]: unknown }) {
+  private _makePropsProxy(props: Props) {
     return new Proxy(props, {
       get(target, prop) {
-        const value = target[prop as keyof { [key: string]: unknown }];
+        const value = target[prop as keyof Props];
         return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, value) {
-        if (target[prop as keyof { [key: string]: unknown }] !== value) {
-          target[prop as keyof { [key: string]: unknown }] = value;
+        if (target[prop as keyof Props] !== value) {
+          target[prop as keyof Props] = value;
           this._setUpdate = true;
         }
         return true;
@@ -219,11 +218,11 @@ export default class Block {
     });
   }
 
-  show() {
+  public show() {
     this._element.style.display = "block";
   }
 
-  hide() {
+  public hide() {
     this._element.style.display = "none";
   }
 }
