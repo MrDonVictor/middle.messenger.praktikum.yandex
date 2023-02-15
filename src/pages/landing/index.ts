@@ -11,6 +11,10 @@ type Props = T & {
 };
 
 export default class Landing extends Block<Props> {
+  constructor(props: Props) {
+    super("div", props);
+  }
+
   render() {
     return this.compile(tmpl, { ...this._props });
   }

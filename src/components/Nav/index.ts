@@ -6,23 +6,11 @@ type Props = T & {
 };
 
 export default class Nav extends Block<Props> {
+  constructor(props: Props) {
+    super("ul", props);
+  }
+
   render() {
     return this.compile(tmpl, { ...this._props });
-  }
-
-  addEvents() {
-    this._element.querySelectorAll("a").forEach((a) => {
-      const { click } = this._props.events;
-      a.addEventListener("click", click);
-    });
-    super.addEvents();
-  }
-
-  removeEvents() {
-    this._element.querySelectorAll("a").forEach((a) => {
-      const { click } = this._props.events;
-      a.removeEventListener("click", click);
-    });
-    super.removeEvents();
   }
 }

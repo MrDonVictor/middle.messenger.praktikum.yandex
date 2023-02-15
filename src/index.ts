@@ -21,7 +21,7 @@ class Index extends Block<T> {
   }
 }
 
-const nav = new Nav("ul", {
+const nav = new Nav({
   items: navigation,
   events: {
     click: (e: Event) => {
@@ -32,7 +32,7 @@ const nav = new Nav("ul", {
   },
 });
 
-const landing = new Landing("div", {
+const landing = new Landing({
   chats: chats,
   messages: messages,
   attr: {
@@ -45,7 +45,7 @@ const signupInputsComponents: { string: Block<T> } = {} as { string: Block<T> };
 signupInputs.map(
   (input) =>
     (signupInputsComponents[input.name as keyof { string: Block<T> }] =
-      new Input("div", {
+      new Input({
         attr: {
           class: "input-container",
         },
@@ -63,7 +63,7 @@ const loginInputsComponents: { string: Block<T> } = {} as { string: Block<T> };
 loginInputs.map(
   (input) =>
     (loginInputsComponents[input.name as keyof { string: Block<T> }] =
-      new Input("div", {
+      new Input({
         attr: {
           class: "input-container",
         },
@@ -81,7 +81,7 @@ const settingsComponents: { string: Block<T> } = {} as { string: Block<T> };
 settingsInputs.map(
   (input) =>
     (settingsComponents[(input.name + "_comp") as keyof { string: Block<T> }] =
-      new Input("div", {
+      new Input({ 
         attr: {
           class: "input-container",
         },
@@ -94,27 +94,27 @@ settingsInputs.map(
       }))
 );
 
-const signup = new Signup("div", {
+const signup = new Signup({
   attr: {
     class: "flex flex-col centered form",
   },
   ...signupInputsComponents,
 });
 
-const signin = new Signin("div", {
+const signin = new Signin({
   attr: {
     class: "flex flex-col centered form",
   },
   ...loginInputsComponents,
 });
 
-const settingsForm = new SettingsForm("form", {
+const settingsForm = new SettingsForm({
   attr: {
     class: "flex flex-col centered",
   },
   ...settingsComponents,
   events: {
-    onSubmit: (e: Event) => {
+    submit: (e: Event) => {
       e.preventDefault();
       e.stopPropagation();
       console.log("Form submited");
@@ -122,7 +122,7 @@ const settingsForm = new SettingsForm("form", {
   },
 });
 
-const settings = new Settings("div", {
+const settings = new Settings({
   ...person,
   attr: {
     class: "flex flex-col centered",
@@ -130,7 +130,7 @@ const settings = new Settings("div", {
   form: settingsForm,
 });
 
-const error500 = new Error("div", {
+const error500 = new Error({
   error_code: "500",
   error_text: "We already fixing it",
   attr: {
@@ -138,7 +138,7 @@ const error500 = new Error("div", {
   },
 });
 
-const error404 = new Error("div", {
+const error404 = new Error({
   error_code: "404",
   error_text: "Ops there is no page you are looking for",
   attr: {
