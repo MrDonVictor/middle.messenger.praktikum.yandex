@@ -178,7 +178,8 @@ function renderPage(page: string) {
   }
   index._render();
   if (app_div) {
-    app_div.innerHTML = index._element.innerHTML;
+    app_div.innerHTML = '';
+    app_div.appendChild(index._element)
   }
   return;
 }
