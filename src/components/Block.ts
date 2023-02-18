@@ -70,7 +70,7 @@ export default abstract class Block<Props extends T> {
   }
 
   public addEvents() {
-    const { events } = this._props;
+    const { events } = this._props;    
     if (events) {
       Object.keys(events).forEach((eventName) =>
         this._element.addEventListener(

@@ -152,7 +152,7 @@ export const messages = [
 ];
 
 export const navigation = [
-  { url: "#", title: "Landing" },
+  { url: "#", title: "Landing Page" },
   { url: "#signup", title: "Signup Page" },
   { url: "#signin", title: "Signin Page" },
   { url: "#settings", title: "Settings" },
@@ -167,7 +167,6 @@ export const signupInputs = [
     name: 'first_name',
     required: true,
     label: 'First name',
-    pattern: "^[A-Z]{1}[a-z-]+$"
   },
   {
     type: "text",
@@ -175,7 +174,6 @@ export const signupInputs = [
     name: 'second_name',
     required: true,
     label: 'Second name',
-    pattern: "^[A-Z]{1}[a-z-]+$"
   },
   {
     type: "text",
@@ -183,7 +181,6 @@ export const signupInputs = [
     name: 'login',
     required: true,
     label: 'Login',
-    pattern: "^(?=[a-zA-Z0-9_-]{3,20}$)(?!.*[_-]{2})[^_-].*[^_-]$"
   },
   {
     type: "email",
@@ -191,7 +188,6 @@ export const signupInputs = [
     name: 'email',
     required: true,
     label: 'Email',
-    pattern: ".{1,}",
   },
   {
     type: "password",
@@ -199,7 +195,6 @@ export const signupInputs = [
     name: 'password',
     required: true,
     label: 'Password',
-    pattern: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$",
   },
   {
     type: "text",
@@ -207,7 +202,6 @@ export const signupInputs = [
     name: 'phone',
     required: true,
     label: 'Phone',
-    pattern: "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$",
   },
 ]
 
@@ -218,7 +212,6 @@ export const loginInputs = [
     name: 'login',
     required: true,
     label: 'Login',
-    pattern: "^(?=[a-zA-Z0-9_-]{3,20}$)(?!.*[_-]{2})[^_-].*[^_-]$",
   },
   {
     type: "password",
@@ -226,7 +219,6 @@ export const loginInputs = [
     name: 'password',
     required: true,
     label: 'Password',
-    pattern: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$",
   },
 ]
 
@@ -237,7 +229,6 @@ export const settingsInputs = [
     name: 'first_name',
     required: false,
     label: 'First name',
-    pattern: "^[A-Z]{1}[a-z-]+$",
   },
   {
     type: "text",
@@ -245,7 +236,6 @@ export const settingsInputs = [
     name: 'second_name',
     required: false,
     label: 'Second name',
-    pattern: "^[A-Z]{1}[a-z-]+$",
   },
   {
     type: "text",
@@ -253,7 +243,6 @@ export const settingsInputs = [
     name: 'display_name',
     required: false,
     label: 'Display name',
-    pattern: ""
   },
   {
     type: "text",
@@ -261,7 +250,6 @@ export const settingsInputs = [
     name: 'login',
     required: false,
     label: 'Login',
-    pattern: "^(?=[a-zA-Z0-9_-]{3,20}$)(?!.*[_-]{2})[^_-].*[^_-]$",
   },
   {
     type: "email",
@@ -269,7 +257,6 @@ export const settingsInputs = [
     name: 'email',
     required: false,
     label: 'Email',
-    pattern: ".{1,}"
   },
   {
     type: "text",
@@ -277,7 +264,6 @@ export const settingsInputs = [
     name: 'phone',
     required: false,
     label: 'Phone',
-    pattern: "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$",
   },
   {
     type: "password",
@@ -285,7 +271,6 @@ export const settingsInputs = [
     name: 'old_password',
     required: false,
     label: 'Old password',
-    pattern: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$",
   },
   {
     type: "password",
@@ -293,6 +278,5 @@ export const settingsInputs = [
     name: 'new_password',
     required: false,
     label: 'New password',
-    pattern: "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,40}$",
   },
 ]

@@ -1,4 +1,12 @@
-import { Nav, Block, Input, SettingsForm, T } from "./components";
+import {
+  Nav,
+  Block,
+  Input,
+  SettingsForm,
+  SigninForm,
+  SignupForm,
+  T,
+} from "./components";
 import tmpl from "./index.hbs";
 import { Landing, Signup, Signin, Settings, Error } from "./pages";
 import {
@@ -10,6 +18,7 @@ import {
   loginInputs,
   settingsInputs,
 } from "./utils/mockData";
+import { inputValidation } from "./utils/validation";
 
 interface Infer {
   string: string | (() => void);
@@ -21,13 +30,34 @@ class Index extends Block<T> {
   }
 }
 
+const onSubmit = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const form = e.target as HTMLFormElement;
+  for (let i = 0; i < form.elements.length; i++) {
+    const input = form.elements[i] as HTMLInputElement;
+    if (input.name) {
+      inputValidation(input);
+      console.log(input.name + " = " + input.value);
+    }
+  }
+};
+
+const onBlur = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const input = e.target as HTMLInputElement;
+  if (input.name) {
+    inputValidation(input);
+  }
+};
+
 const nav = new Nav({
   items: navigation,
   events: {
     click: (e: Event) => {
-      console.log("Link clicked");
-      e.preventDefault();
-      e.stopPropagation();
+      const nav = e.target as Element;
+      console.log(nav.innerHTML + " clicked");
     },
   },
 });
@@ -54,7 +84,10 @@ signupInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
-        pattern: input.pattern,
+        events: {
+          onBlur: onBlur,
+          focus: onBlur,
+        },
       }))
 );
 
@@ -72,7 +105,10 @@ loginInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
-        pattern: input.pattern,
+        events: {
+          blur: onBlur,
+          focus: onBlur,
+        },
       }))
 );
 
@@ -81,7 +117,7 @@ const settingsComponents: { string: Block<T> } = {} as { string: Block<T> };
 settingsInputs.map(
   (input) =>
     (settingsComponents[(input.name + "_comp") as keyof { string: Block<T> }] =
-      new Input({ 
+      new Input({
         attr: {
           class: "input-container",
         },
@@ -90,22 +126,45 @@ settingsInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
-        pattern: input.pattern,
+        events: {
+          blur: onBlur,
+          focus: onBlur,
+        },
       }))
 );
+
+const signupForm = new SignupForm({
+  attr: {
+    class: "flex flex-col centered",
+  },
+  ...signupInputsComponents,
+  events: {
+    submit: onSubmit,
+  },
+});
 
 const signup = new Signup({
   attr: {
     class: "flex flex-col centered form",
   },
-  ...signupInputsComponents,
+  form: signupForm,
+});
+
+const signinForm = new SigninForm({
+  attr: {
+    class: "flex flex-col centered",
+  },
+  ...loginInputsComponents,
+  events: {
+    submit: onSubmit,
+  },
 });
 
 const signin = new Signin({
   attr: {
     class: "flex flex-col centered form",
   },
-  ...loginInputsComponents,
+  form: signinForm,
 });
 
 const settingsForm = new SettingsForm({
@@ -114,11 +173,7 @@ const settingsForm = new SettingsForm({
   },
   ...settingsComponents,
   events: {
-    submit: (e: Event) => {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log("Form submited");
-    },
+    submit: onSubmit,
   },
 });
 
@@ -178,8 +233,8 @@ function renderPage(page: string) {
   }
   index._render();
   if (app_div) {
-    app_div.innerHTML = '';
-    app_div.appendChild(index._element)
+    app_div.innerHTML = "";
+    app_div.appendChild(index._element);
   }
   return;
 }

@@ -38,14 +38,18 @@ input {
   transition: border 500ms;
   border: none;
   outline: none;
+  border-radius: $border-radius;
 }
 
 input:focus + label {
   color: $primary;
 }
 
-input:invalid {
-  border: $error solid 3px;
-  border-radius: $border-radius;
+input.error {
+  border: 2px solid $error;
+}
+
+input.success {
+  border: none;
 }
 
