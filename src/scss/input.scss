@@ -53,3 +53,12 @@ input.success {
   border: none;
 }
 
+p.success {
+  display: none;
+}
+
+p.error {
+  color: $error;
+  margin: 0 0 0 4px;
+  font-size: 12px;
+}

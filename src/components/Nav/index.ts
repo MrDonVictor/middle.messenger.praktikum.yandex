@@ -7,7 +7,7 @@ type Props = T & {
 
 export default class Nav extends Block<Props> {
   constructor(props: Props) {
-    super("ul", props);
+    super("nav", props);
   }
 
   render() {

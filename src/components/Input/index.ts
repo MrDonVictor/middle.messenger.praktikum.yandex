@@ -23,4 +23,18 @@ export default class Input extends Block<T> {
       });
     }
   }
+
+  public removeEvents(): void {
+    const { events } = this._props;
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        this._element
+          .querySelector("input")
+          ?.removeEventListener(
+            eventName,
+            events[eventName as keyof typeof events]
+          );
+      });
+    }
+  }
 }

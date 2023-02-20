@@ -84,6 +84,7 @@ signupInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
+        error: input.error,
         events: {
           onBlur: onBlur,
           focus: onBlur,
@@ -105,6 +106,7 @@ loginInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
+        error: input.error,
         events: {
           blur: onBlur,
           focus: onBlur,
@@ -126,6 +128,7 @@ settingsInputs.map(
         name: input.name,
         required: input.required,
         label: input.label,
+        error: input.error,
         events: {
           blur: onBlur,
           focus: onBlur,
