@@ -1,7 +1,7 @@
 @import "../../node_modules/normalize-scss/sass/normalize";
-@import 'variables';
-@import 'input';
-@import 'landing';
+@import "variables";
+@import "input";
+@import "landing";
 
 .row {
   display: flex;
@@ -51,7 +51,7 @@
   border-radius: $border-radius;
   border: none;
   padding: 12;
-  
+
   &-primary {
     background-color: $primary;
   }
@@ -79,5 +79,11 @@
 
   &-message {
     width: 100%;
+  }
+}
+
+.mt {
+  &-md {
+    margin-top: 12px;
   }
 }

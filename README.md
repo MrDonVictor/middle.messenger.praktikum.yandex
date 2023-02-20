@@ -14,7 +14,18 @@ Figma
 npm install — установка стабильной версии,
 <br/>npm run dev — запуск версии для разработчика,
 <br/>npm run build — сборка стабильной версии,
-<br/>npm start — запуск версии для разработчика.
+<br/>npm start — запуск версии для разработчика,
+<br/>npm run eslint — проверка и фикс стиля кода используя <a target="_blank" href="https://eslint.org">
+Eslint
+</a>,
+<br/>npm run stylelint-scss — запуск stylelint для scss файлов,
+
 
 ## Задеплоенный проект находится ниже
 <a target="_blank" href="https://deploy--stellar-medovik-bdc322.netlify.app">Netlify</a>
+
+## В ходе написания проекта использовались следующие инструменты:
+Handlebars
+Самописный Block от которого наследуются все компоненты
+Самописный EventBus
+А так же в ходе написания проекта основной упор делался на соблюдение такого патерна прогромирования как MVC

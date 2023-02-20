@@ -23,12 +23,10 @@
 label {
   display: block;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 16px;
-  transform-origin: left top;
+  top: 8px;
+  left: 8px;
   user-select: none;
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),color 150ms cubic-bezier(0.4, 0, 0.2, 1), top 500ms;
+  font-size: 8px;
 }
 
 input {
@@ -40,13 +38,27 @@ input {
   transition: border 500ms;
   border: none;
   outline: none;
+  border-radius: $border-radius;
 }
 
 input:focus + label {
   color: $primary;
 }
 
-input:focus + label,
-input.is-valid + label {
-  transform: translateY(-100%) scale(0.75);
+input.error {
+  border: 2px solid $error;
+}
+
+input.success {
+  border: none;
+}
+
+p.success {
+  display: none;
+}
+
+p.error {
+  color: $error;
+  margin: 0 0 0 4px;
+  font-size: 12px;
 }
